@@ -1,6 +1,6 @@
 name: docs-asciidoc-extensions
 title: Neo4j Documentation extensions for AsciiDoc and Antora
-version: '1.0'
+version: ~
 start_page: ROOT:index.adoc
 nav:
 - modules/ROOT/content-nav.adoc
