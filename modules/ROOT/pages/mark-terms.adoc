@@ -1,0 +1,100 @@
+= mark-terms
+:page-terms-dev-mode: false
+
+Mark terms with eg a registered trademark symbol.
+
+In `dev` mode, all instances are marked.
+To use `dev` mode, add `page-terms-dev-mode: true` to the playbook attributes or `:page-terms-dev-mode: true` to the document header.
+
+
+== Inline terms
+
+For example, Cypher.
+
+Cypher for example.
+
+Cypher44 is not a thing.
+
+Cyphering should not be marked, but Cypher should be.
+
+Terms such as `Cypher` should **not** be marked in inline code.
+
+
+== Links
+
+link:Cypher-path[Cypher link text]
+
+link:Cypher-path[Link text for Cypher]
+
+link:Cypher-path[Link Cypher text]
+
+link:Cypher-path[Link Cypherness text]
+
+link:example.com/Cypher/[Term is in path, but not in link text]
+
+
+== xrefs
+
+Inline link using `<<` notation: <<Labels, Cypher label>>
+
+Inline link using `xref:` notation: xref:mark-terms.adoc#_labels[Cypher label]
+
+
+== Labels
+
+label:Cypher[Label with Cypher in name and text]
+
+label:label[Label with Cypher in text]
+
+
+== Admonitions
+
+[TIP]
+A tip about Cypher.
+
+[WARNING]
+--
+Cypher warning.
+--
+
+
+== Footnotes
+
+Terms in footnotes should be markedfootnote:[For example, this footnote mentions Cypher.]
+
+
+== Titles
+
+
+=== Cypher in a title
+
+Lorem ipsum.
+
+
+== Tables
+
+[options="header"]
+|===
+| Cypher | Other words
+| Should be marked | Should not be marked
+| Cypher in a row | Not herefootnote:[Use of Cypher in a table footnote]
+|===
+
+
+== Source blocks
+
+Terms should **not** be marked in source blocks.
+
+.Query
+[source, cypher, indent=0]
+----
+Cypher in a codeblock
+----
+
+
+== Literal blocks
+
+A literal block:
+
+[literal]
+A Cypher literal block
