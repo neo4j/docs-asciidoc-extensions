@@ -13,7 +13,7 @@ module.exports = function (registry) {
 
       if (!terms) return
 
-      let marker = doc.getAttribute('page-terms-marker') || '&reg;'
+      let marker = doc.getAttribute('page-terms-marker') || '^&reg;^'
 
       let markAdded = []
       
@@ -84,7 +84,7 @@ module.exports = function (registry) {
           // mark the first instance of the term if we find a match
           if (re.test(line)) {
               markAdded.push(term)
-              return line.replace(re, '$1' + term + ' ' + marker)
+              return line.replace(re, '$1' + term + marker)
           }
 
           // we checked but there was no match
