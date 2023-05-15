@@ -9,42 +9,41 @@ module.exports = function (registry) {
           return value.trim();
         })
 
-      let devMode = doc.getAttribute('page-terms-dev-mode')
-
       if (!terms) return
 
+      let markTitles = doc.getAttribute('page-terms-mark-titles')? true : false
+      let devMode = doc.getAttribute('page-terms-dev-mode')
+      
       let marker = doc.getAttribute('page-terms-marker') || '^&reg;^'
 
       let markAdded = []
       
       terms.forEach(term => {
 
-        // experimental regex with negative lookbehind and lookahead DO NOT USE
-        // let re = new RegExp(`(?<!\w+:)${term}(?!\\[\.*\])`)
-
-        // terms should appear:
-        // - as a word at the beginning of a line
-        // - as a word after a space
-        // - after a [ if they are the start of the text output of an inline macro
-              
-        // let re = new RegExp(`(^|\\[|\s)${term}`)
-
         let re = new RegExp(`(^|\\[|\\s)${term}\\b`)
 
         let reMarked = new RegExp(`${term} ${marker}`)
 
         doc.findBy().forEach(block => {
-          
 
           // if we've already marked ths, don't mark it again
           // unless testing in dev mode
           if ( markAdded.includes(term) && !devMode) return
 
+          // lists
+          if (block.getContext() === 'olist' || block.getContext() === 'ulist') {
+            block.getItems().forEach(item => {
+              let reggedItem = testLine(item.text)
+              item.text = reggedItem
+            })
+            return
+          }
+
           // ignore listing blocks (which includes source blocks) and literal blocks
           if (block.getContext() === 'listing' || block.getContext() === 'literal') return
 
           // heading?
-          if (block.getContext() === 'section') {
+          if (block.getContext() === 'section' && markTitles === true) {
             let reggedTitle = testLine(block.getName())
             block.setTitle(reggedTitle)
             return
