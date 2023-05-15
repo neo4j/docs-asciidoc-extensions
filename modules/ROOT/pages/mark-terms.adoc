@@ -1,10 +1,14 @@
-= mark-terms
-:page-terms-dev-mode: false
+= mark-terms (like Cypher)
+// :page-terms-mark-titles: true
+:page-terms-dev-mode: true
 
-Mark terms with eg a registered trademark symbol.
+Mark terms in a document with eg a registered trademark symbol.
 
-In `dev` mode, all instances are marked.
-To use `dev` mode, add `page-terms-dev-mode: true` to the playbook attributes or `:page-terms-dev-mode: true` to the document header.
+* In `dev` mode, all instances are marked.
+* To use `dev` mode, add `page-terms-dev-mode: true` to the playbook attributes or `:page-terms-dev-mode: true` to the document header.
+* Titles are not marked by default.
++
+To mark titles, add `page-terms-mark-titles: true` to the playbook attributes or `:page-terms-mark-titles: true` to the document header.
 
 
 == Inline terms
@@ -18,6 +22,12 @@ Cypher44 is not a thing.
 Cyphering should not be marked, but Cypher should be.
 
 Terms such as `Cypher` should **not** be marked in inline code.
+
+
+== Lists
+
+* Cypher
+* More Cypher
 
 
 == Links
